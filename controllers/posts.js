@@ -35,4 +35,8 @@ function getPosts(req, res) {
   }
 }
 
+// CommonJS
 module.exports = { getPosts };
+
+// ES6
+// export default { getPosts };
