@@ -2,31 +2,31 @@
   {
     "title": "Come iniziare con Node.js: guida per principianti",
     "content": "In questo articolo esploreremo i primi passi per iniziare a programmare con Node.js, installazione dell'ambiente e creazione della prima app server-side.",
-    "image": "https://via.placeholder.com/600x300?text=Nodejs+Start",
+    "image": "https://picsum.photos/id/238/600/300",
     "tags": ["nodejs", "guida", "principianti", "backend"]
   },
   {
     "title": "Express.js: costruire API RESTful in pochi passaggi",
     "content": "Scopri come utilizzare Express.js per creare API RESTful efficienti e scalabili, con esempi pratici e best practice per la strutturazione del progetto.",
-    "image": "https://via.placeholder.com/600x300?text=Express+API",
+    "image": "https://picsum.photos/id/238/600/300",
     "tags": ["express", "api", "rest", "backend"]
   },
   {
     "title": "Gestire l'autenticazione in Node.js con JWT",
     "content": "Una guida dettagliata su come implementare l'autenticazione sicura usando JSON Web Tokens (JWT) all'interno delle tue applicazioni Node.js.",
-    "image": "https://via.placeholder.com/600x300?text=JWT+Auth",
+    "image": "https://picsum.photos/id/238/600/300",
     "tags": ["nodejs", "autenticazione", "jwt", "sicurezza"]
   },
   {
     "title": "Usare MongoDB con Node.js per un'applicazione full stack",
     "content": "Introduzione all'integrazione di MongoDB come database NoSQL in applicazioni sviluppate con Node.js e Express, includendo esempi di CRUD e connessione.",
-    "image": "https://via.placeholder.com/600x300?text=MongoDB+Nodejs",
+    "image": "https://picsum.photos/id/238/600/300",
     "tags": ["mongodb", "nodejs", "database", "fullstack"]
   },
   {
     "title": "Consigli per la scrittura di codice pulito in JavaScript",
     "content": "Una panoramica sulle migliori pratiche per scrivere codice JavaScript leggibile, manutenibile e facile da testare, con esempi concreti.",
-    "image": "https://via.placeholder.com/600x300?text=Clean+Code",
+    "image": "https://picsum.photos/id/238/600/300",
     "tags": ["javascript", "codice", "bestpractices", "clean"]
   }
 ]
