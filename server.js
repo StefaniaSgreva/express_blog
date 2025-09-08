@@ -20,6 +20,8 @@ const postsController = require('./controllers/posts');
 // Configura dotenv per caricare variabili ambiente
 dotenv.config();
 
+// configuro i file statici
+app.use(express.static("public"));
 
 // Rotta root che risponde con un h1 di benvenuto
 app.get('/', (req, res) => {
