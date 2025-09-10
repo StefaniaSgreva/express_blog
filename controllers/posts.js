@@ -47,10 +47,21 @@ function show(req, res) {
   }
 }
 
+function create(req, res) {
+  const accept = req.headers.accept || '';
+
+  if (accept.includes('text/html')) {
+    res.send('<h1>Creazione nuovo post</h1>');
+  } else {
+    res.status(406).send({ error: 'Not Acceptable: solo content-type HTML supportato' });
+  }
+}
+
 // CommonJS
 module.exports = { 
   index,
-  show 
+  show,
+  create 
 };
 
 // ES6

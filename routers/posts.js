@@ -16,8 +16,12 @@ import postsController from '../controllers/posts.js';*/
 // Quando arriva una richiesta GET a '/posts/', viene chiamata la funzione index del controller
 router.get("/", postsController.index);
 
+// Rotta create con un h1 o error 406
+router.get('/create', postsController.create);
+
 // Rotta per mostrare un post specifico tramite slug
 router.get('/:slug', postsController.show);
+
 
 
 // CommonJS
