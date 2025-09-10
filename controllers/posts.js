@@ -20,8 +20,8 @@ function index(req, res) {
     posts.forEach(post => {
       html += `
         <li style="margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-          <h2>${post.title}</h2>
-          <img src="images/posts_cover/${post.image}" alt="${post.title}" style="max-width: 100%; height: auto;">
+          <h2><a href="/posts/${post.slug}">${post.title}</a></h2>  
+          <img src="/images/posts_cover/${post.image}" alt="${post.title}" style="max-width: 100%; height: auto;">
           <p>${post.content}</p>
           <p><strong>Tags:</strong> ${post.tags.map(tag => `<span style="background:#eee; border-radius:5px; padding:2px 8px; margin-right:5px;">${tag}</span>`).join('')}</p>
         </li>
