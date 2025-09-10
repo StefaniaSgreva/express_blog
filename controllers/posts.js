@@ -57,11 +57,33 @@ function create(req, res) {
   }
 }
 
+const path = require('path');
+
+function download(req, res) {
+  const slug = req.params.slug;
+  const post = posts.find(post => post.slug === slug);
+
+  if (!post) {
+    return res.status(404).json({ error: "Post non trovato" });
+  }
+
+  // Percorso assoluto all'immagine nella cartella 'public/images/posts_cover'
+  const imagePath = path.join(__dirname, '..', 'public', 'images', 'posts_cover', post.image);
+
+  res.download(imagePath, post.image, (err) => {
+    if (err) {
+      res.status(500).json({ error: "Errore nel download dell'immagine" });
+    }
+  });
+}
+
+
 // CommonJS
 module.exports = { 
   index,
   show,
-  create 
+  create,
+  download 
 };
 
 // ES6

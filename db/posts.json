@@ -9,7 +9,7 @@
       "principianti",
       "backend"
     ],
-    "slug": "come-iniziare-con-node-js-guida-per-principianti"
+    "slug": "come-iniziare-con-nodejs-guida-per-principianti"
   },
   {
     "title": "Express.js: costruire API RESTful in pochi passaggi",
@@ -21,7 +21,7 @@
       "rest",
       "backend"
     ],
-    "slug": "express-js-costruire-api-restful-in-pochi-passaggi"
+    "slug": "expressjs-costruire-api-restful-in-pochi-passaggi"
   },
   {
     "title": "Gestire l'autenticazione in Node.js con JWT",
@@ -33,7 +33,7 @@
       "jwt",
       "sicurezza"
     ],
-    "slug": "gestire-l-autenticazione-in-node-js-con-jwt"
+    "slug": "gestire-lautenticazione-in-nodejs-con-jwt"
   },
   {
     "title": "Usare MongoDB con Node.js per un'applicazione full stack",
@@ -45,7 +45,7 @@
       "database",
       "fullstack"
     ],
-    "slug": "usare-mongodb-con-node-js-per-un-applicazione-full-stack"
+    "slug": "usare-mongodb-con-nodejs-per-unapplicazione-full-stack"
   },
   {
     "title": "Consigli per la scrittura di codice pulito in JavaScript",
