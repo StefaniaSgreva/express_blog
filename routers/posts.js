@@ -16,6 +16,10 @@ import postsController from '../controllers/posts.js';*/
 // Quando arriva una richiesta GET a '/posts/', viene chiamata la funzione index del controller
 router.get("/", postsController.index);
 
+// Rotta per mostrare un post specifico tramite slug
+router.get('/:slug', postsController.show);
+
+
 // CommonJS
 // Esporta il router usando CommonJS per poterlo usare nel file server.js
 module.exports = router;

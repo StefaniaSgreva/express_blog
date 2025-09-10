@@ -3,30 +3,60 @@
     "title": "Come iniziare con Node.js: guida per principianti",
     "content": "In questo articolo esploreremo i primi passi per iniziare a programmare con Node.js, installazione dell'ambiente e creazione della prima app server-side.",
     "image": "placeholder.jpg",
-    "tags": ["nodejs", "guida", "principianti", "backend"]
+    "tags": [
+      "nodejs",
+      "guida",
+      "principianti",
+      "backend"
+    ],
+    "slug": "come-iniziare-con-node-js-guida-per-principianti"
   },
   {
     "title": "Express.js: costruire API RESTful in pochi passaggi",
     "content": "Scopri come utilizzare Express.js per creare API RESTful efficienti e scalabili, con esempi pratici e best practice per la strutturazione del progetto.",
     "image": "placeholder.jpg",
-    "tags": ["express", "api", "rest", "backend"]
+    "tags": [
+      "express",
+      "api",
+      "rest",
+      "backend"
+    ],
+    "slug": "express-js-costruire-api-restful-in-pochi-passaggi"
   },
   {
     "title": "Gestire l'autenticazione in Node.js con JWT",
     "content": "Una guida dettagliata su come implementare l'autenticazione sicura usando JSON Web Tokens (JWT) all'interno delle tue applicazioni Node.js.",
     "image": "placeholder.jpg",
-    "tags": ["nodejs", "autenticazione", "jwt", "sicurezza"]
+    "tags": [
+      "nodejs",
+      "autenticazione",
+      "jwt",
+      "sicurezza"
+    ],
+    "slug": "gestire-l-autenticazione-in-node-js-con-jwt"
   },
   {
     "title": "Usare MongoDB con Node.js per un'applicazione full stack",
     "content": "Introduzione all'integrazione di MongoDB come database NoSQL in applicazioni sviluppate con Node.js e Express, includendo esempi di CRUD e connessione.",
     "image": "placeholder.jpg",
-    "tags": ["mongodb", "nodejs", "database", "fullstack"]
+    "tags": [
+      "mongodb",
+      "nodejs",
+      "database",
+      "fullstack"
+    ],
+    "slug": "usare-mongodb-con-node-js-per-un-applicazione-full-stack"
   },
   {
     "title": "Consigli per la scrittura di codice pulito in JavaScript",
     "content": "Una panoramica sulle migliori pratiche per scrivere codice JavaScript leggibile, manutenibile e facile da testare, con esempi concreti.",
     "image": "placeholder.jpg",
-    "tags": ["javascript", "codice", "bestpractices", "clean"]
+    "tags": [
+      "javascript",
+      "codice",
+      "bestpractices",
+      "clean"
+    ],
+    "slug": "consigli-per-la-scrittura-di-codice-pulito-in-javascript"
   }
 ]

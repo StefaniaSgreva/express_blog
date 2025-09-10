@@ -35,8 +35,23 @@ function index(req, res) {
   }
 }
 
+function show(req, res) {
+  const slug = req.params.slug;
+  // Cerca il post corrispondente allo slug
+  const post = posts.find(p => p.slug === slug);
+
+  if (post) {
+    res.json(post);
+  } else {
+    res.status(404).json({ error: "Post non trovato" });
+  }
+}
+
 // CommonJS
-module.exports = { index };
+module.exports = { 
+  index,
+  show 
+};
 
 // ES6
 // export default { index };
