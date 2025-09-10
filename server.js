@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 // Definisce una rotta GET su '/posts' che utilizza la funzione getPosts del postsController
 // Quando arriva una richiesta GET a '/posts', viene chiamata la funzione getPosts per rispondere
-app.get('/posts', postsController.getPosts);
+app.get('/posts', postsController.index);
 
 
 // Impostiamo la porta presa da .env o fallback a 3000

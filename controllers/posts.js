@@ -4,7 +4,7 @@ const posts = require('../db/posts.json');
 // Alternativa ES6 Modules (se usi module):
 // import posts from '../db/posts.json' assert { type: 'json' };
 
-function getPosts(req, res) {
+function index(req, res) {
   const accept = req.headers.accept || '';
 
   if (accept.includes('application/json')) {
@@ -36,7 +36,7 @@ function getPosts(req, res) {
 }
 
 // CommonJS
-module.exports = { getPosts };
+module.exports = { index };
 
 // ES6
-// export default { getPosts };
+// export default { index };
