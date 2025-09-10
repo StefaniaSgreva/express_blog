@@ -40,11 +40,13 @@ function show(req, res) {
   const post = posts.find(post => post.slug === slug);
 
   if (post) {
-    const postWithImageUrl = {
+    const baseUrl = `${req.protocol}://${req.get('host')}/posts/${slug}`;
+    const postWithUrls = {
       ...post,
-      image_url: `${req.protocol}://${req.get('host')}/images/posts_cover/${post.image}`
+      image_url: `${req.protocol}://${req.get('host')}/images/posts_cover/${post.image}`,
+      image_download_url: `${baseUrl}/download`
     };
-    res.json(postWithImageUrl);
+    res.json(postWithUrls);
   } else {
     res.status(404).json({ error: "Post non trovato" });
   }
@@ -70,7 +72,6 @@ function download(req, res) {
     return res.status(404).json({ error: "Post non trovato" });
   }
 
-  // Percorso assoluto all'immagine nella cartella 'public/images/posts_cover'
   const imagePath = path.join(__dirname, '..', 'public', 'images', 'posts_cover', post.image);
 
   res.download(imagePath, post.image, (err) => {
