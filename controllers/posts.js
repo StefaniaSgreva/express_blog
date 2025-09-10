@@ -37,11 +37,14 @@ function index(req, res) {
 
 function show(req, res) {
   const slug = req.params.slug;
-  // Cerca il post corrispondente allo slug
-  const post = posts.find(p => p.slug === slug);
+  const post = posts.find(post => post.slug === slug);
 
   if (post) {
-    res.json(post);
+    const postWithImageUrl = {
+      ...post,
+      image_url: `${req.protocol}://${req.get('host')}/images/posts_cover/${post.image}`
+    };
+    res.json(postWithImageUrl);
   } else {
     res.status(404).json({ error: "Post non trovato" });
   }
