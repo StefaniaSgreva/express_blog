@@ -20,6 +20,12 @@ const postsRouter = require('./routers/posts');
 // Configura dotenv per caricare variabili ambiente
 dotenv.config();
 
+// configuro express per leggere i dati in formato application/json
+app.use(express.json());
+
+// configuro express per leggere i dati in formato application/x-www-form-urlencoded (form classico)
+app.use(express.urlencoded({extended: true}));
+
 // Configuro i file statici
 app.use(express.static("public"));
 
