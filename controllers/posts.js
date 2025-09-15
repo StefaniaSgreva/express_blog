@@ -1,5 +1,13 @@
 // CommonJS
-const posts = require('../db/posts.json');
+// Import dei moduli core necesari per file system, path e slug generation
+const fs = require('fs');
+const path = require('path');
+const slugify = require('slugify');
+
+// Carica il file JSON contenente i post in memoria
+let posts = require('../db/posts.json');
+// Percorso assoluto al file JSON per aggiornamenti
+const postsFilePath = path.join(__dirname, '..', 'db', 'posts.json');
 
 // Alternativa ES6 Modules (se usi module):
 // import posts from '../db/posts.json' assert { type: 'json' };
@@ -57,6 +65,41 @@ function show(req, res) {
   }
 }
 
+// Funzione store per creare un nuovo post da dati POST urlencoded
+function store(req, res) {
+  const { title, content, tags } = req.body;
+
+  // Validazione semplice di presenza campi essenziali
+  if (!title || !content) {
+    return res.status(400).send('Titolo e contenuto sono obbligatori');
+  }
+
+  // Generazione slug sicuro dal titolo
+  const slug = slugify(title, { lower: true, strict: true });
+
+  // Creazione nuovo oggetto post con immagine placeholder
+  const newPost = {
+    title,
+    content,
+    slug,
+    image: 'placeholder.jpg',  // immagine di default per ora
+    tags: tags ? tags.split(',').map(t => t.trim()) : []
+  };
+
+   // Inserimento post e salvataggio su file JSON
+  posts.push(newPost);
+  savePosts();
+
+  const accept = req.headers.accept || '';
+
+  // Risposta differenziata in base all’header Accept
+  if (accept.includes('text/html')) {
+    res.redirect('/posts'); // redirect per richieste browser
+  } else {
+    res.json(newPost); // risposta JSON per API
+  }
+}
+
 // Controller per la creazione di un nuovo post
 function create(req, res) {
   const accept = req.headers.accept || '';
@@ -93,13 +136,19 @@ function download(req, res) {
   });
 }
 
-// Esportazione dei controller
+// Funzione di utilità per salvare la lista post aggiornata su file JSON
+function savePosts() {
+  fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf-8');
+}
+
+// Esportazione dei controller per il router
 // CommonJS
 module.exports = { 
   index,
   show,
   create,
-  download 
+  download,
+  store 
 };
 
 // ES6 Modules
