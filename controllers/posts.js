@@ -82,6 +82,9 @@ function store(req, res) {
   // Generazione slug dal titolo
   const slug = slugify(title, { lower: true, strict: true });
 
+  // Verifica se tags è array, altrimenti default a []
+  const parsedTags = Array.isArray(tags) ? tags : [];
+
   // Creazione nuovo post
   const newPost = {
     id: newId,
@@ -89,7 +92,7 @@ function store(req, res) {
     content,
     slug,
     image: 'placeholder.jpg',
-    tags: tags ? tags.split(',').map(t => t.trim()) : [],
+    tags: parsedTags,
     updatedAt: new Date().toISOString()
   };
 
