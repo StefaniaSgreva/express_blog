@@ -82,8 +82,11 @@ function store(req, res) {
   // Generazione slug dal titolo
   const slug = slugify(title, { lower: true, strict: true });
 
-  // Verifica se tags è array, altrimenti default a []
+  // Gestione tags: se è array lascia così, altrimenti array vuoto
   const parsedTags = Array.isArray(tags) ? tags : [];
+
+   // Uso dell’immagine caricata o placeholder predefinito
+  const imageFilename = req.file ? req.file.filename : 'placeholder.jpg';
 
   // Creazione nuovo post
   const newPost = {
@@ -91,7 +94,7 @@ function store(req, res) {
     title,
     content,
     slug,
-    image: 'placeholder.jpg',
+    image: imageFilename,
     tags: parsedTags,
     updatedAt: new Date().toISOString()
   };

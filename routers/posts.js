@@ -6,6 +6,9 @@ const router = express.Router();
 // Importa il controller dei post che contiene la logica delle rotte
 const postsController = require("../controllers/posts");
 
+// const multer = require("multer");
+const upload = require('../middlewares/upload');
+
 /* Alternativa ES6 Modules (per usarla, aggiungi "type": "module" in package.json):
 import express from 'express';
 const router = express.Router();
@@ -23,7 +26,11 @@ router.get('/create', postsController.create);
 router.get('/:slug', postsController.show);
 
 // store
-router.post('/', postsController.store);
+// router.post('/', postsController.store);
+// router.post("/", multer({dest: "public/images/posts_cover"}).single("image"), postsController.store);
+
+// Usa multer configurato con disco per upload singolo "image"
+router.post('/', upload.single('image'), postsController.store);
 
 // destroy
 router.delete("/:slug", postsController.destroy);

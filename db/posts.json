@@ -76,5 +76,31 @@
       "learning"
     ],
     "updatedAt": "2025-09-16T10:13:04.487Z"
+  },
+  {
+    "id": 106,
+    "title": "Titolo del nuovo post",
+    "content": "Questo è un contenuto di prova per il post",
+    "slug": "titolo-del-nuovo-post",
+    "image": "dbdd702e1e28d27888efe347874d240e",
+    "tags": [
+      "nodejs",
+      "backend",
+      "tutorial"
+    ],
+    "updatedAt": "2025-09-16T10:50:35.025Z"
+  },
+  {
+    "id": 107,
+    "title": "Titolo del nuovo post",
+    "content": "Questo è un contenuto di prova per il post",
+    "slug": "titolo-del-nuovo-post",
+    "image": "image-1758020417870-236662003.png",
+    "tags": [
+      "nodejs",
+      "backend",
+      "tutorial"
+    ],
+    "updatedAt": "2025-09-16T11:00:17.875Z"
   }
 ]
