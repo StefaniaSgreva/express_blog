@@ -69,36 +69,42 @@ function show(req, res) {
 function store(req, res) {
   const { title, content, tags } = req.body;
 
-  // Validazione semplice di presenza campi essenziali
+  // Validazione semplice
   if (!title || !content) {
     return res.status(400).send('Titolo e contenuto sono obbligatori');
   }
 
-  // Generazione slug sicuro dal titolo
+  // Recupero tutti gli id attuali per assegnare il nuovo ID
+  let idList = posts.map(post => post.id || 0);
+  idList.sort((a, b) => b - a);
+  const newId = idList.length > 0 ? idList[0] + 1 : 1;
+
+  // Generazione slug dal titolo
   const slug = slugify(title, { lower: true, strict: true });
 
-  // Creazione nuovo oggetto post con immagine placeholder
+  // Creazione nuovo post
   const newPost = {
+    id: newId,
     title,
     content,
     slug,
-    image: 'placeholder.jpg',  // immagine di default per ora
-    tags: tags ? tags.split(',').map(t => t.trim()) : []
+    image: 'placeholder.jpg',
+    tags: tags ? tags.split(',').map(t => t.trim()) : [],
+    updatedAt: new Date().toISOString()
   };
 
-   // Inserimento post e salvataggio su file JSON
+  // Salvataggio
   posts.push(newPost);
   savePosts();
 
   const accept = req.headers.accept || '';
-
-  // Risposta differenziata in base all’header Accept
   if (accept.includes('text/html')) {
-    res.redirect('/posts'); // redirect per richieste browser
+    res.redirect('/posts');
   } else {
-    res.json(newPost); // risposta JSON per API
+    res.json(newPost);
   }
 }
+
 
 // Controller per la creazione di un nuovo post
 function create(req, res) {
@@ -112,9 +118,6 @@ function create(req, res) {
     res.status(406).send({ error: 'Not Acceptable: solo content-type HTML supportato' });
   }
 }
-
-// Per gestire il download del file immagine
-const path = require('path');
 
 function download(req, res) {
   const slug = req.params.slug;
