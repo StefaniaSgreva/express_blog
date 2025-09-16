@@ -102,5 +102,18 @@
       "tutorial"
     ],
     "updatedAt": "2025-09-16T11:00:17.875Z"
+  },
+  {
+    "id": 108,
+    "title": "Titolo del nuovo post",
+    "content": "Questo è un contenuto di prova per il post",
+    "slug": "titolo-del-nuovo-post",
+    "image": "image-1758034635165-341385570.png",
+    "tags": [
+      "nodejs",
+      "backend",
+      "tutorial"
+    ],
+    "updatedAt": "2025-09-16T14:57:15.169Z"
   }
 ]

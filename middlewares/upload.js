@@ -12,6 +12,20 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+// Filtro per accettare solo immagini jpg, jpeg, png, gif
+function fileFilter(req, file, cb) {
+  const allowedTypes = /jpeg|jpg|png|gif/;
+  const extName = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimeType = allowedTypes.test(file.mimetype);
+
+  if (extName && mimeType) {
+    // accetta il file
+    cb(null, true);
+  } else {
+    cb(new Error('Solo immagini (jpeg, jpg, png, gif) sono permesse'));
+  }
+}
+
+const upload = multer({ storage, fileFilter });
 
 module.exports = upload;
