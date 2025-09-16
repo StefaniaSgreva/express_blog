@@ -108,6 +108,40 @@ function store(req, res) {
   }
 }
 
+async function destroy(req, res) {
+  const slug = req.params.slug;
+  const postIndex = posts.findIndex(post => post.slug === slug);
+
+  if (postIndex === -1) {
+    return res.status(404).json({ error: "Post non trovato" });
+  }
+
+  const post = posts[postIndex];
+
+  // Rimuovi immagine se esiste e se è stringa
+  if (post.image && typeof post.image === 'string' && post.image !== 'placeholder.jpg') {
+    const imagePath = path.resolve(__dirname, '..', 'public', 'images', 'posts_cover', post.image);
+    try {
+      fs.unlinkSync(imagePath);
+    } catch (err) {
+      console.error(`Impossibile eliminare l'immagine: ${err.message}`);
+      // continua anche se errore nella cancellazione immagine
+    }
+  }
+
+  // Rimuovo il post dall'array e aggiorno file JSON
+  posts.splice(postIndex, 1);
+  fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf-8');
+
+  const accept = req.headers.accept || '';
+
+  if (accept.includes('text/html')) {
+    res.redirect('/posts'); // redirect per browser
+  } else {
+    res.send('Post eliminato'); // testo per API
+  }
+}
+
 
 // Controller per la creazione di un nuovo post
 function create(req, res) {
@@ -154,7 +188,8 @@ module.exports = {
   show,
   create,
   download,
-  store 
+  store,
+  destroy 
 };
 
 // ES6 Modules

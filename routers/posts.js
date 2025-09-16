@@ -22,7 +22,11 @@ router.get('/create', postsController.create);
 // Rotta per mostrare un post specifico tramite slug
 router.get('/:slug', postsController.show);
 
+// store
 router.post('/', postsController.store);
+
+// destroy
+router.delete("/:slug", postsController.destroy);
 
 // Rotta che scarica l'immagine del post rappresentato dallo slug
 router.get('/:slug/download', postsController.download);
