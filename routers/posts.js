@@ -9,6 +9,8 @@ const postsController = require("../controllers/posts");
 // const multer = require("multer");
 const upload = require('../middlewares/upload');
 
+const authMiddleware = require("../middlewares/authenticate");
+
 /* Alternativa ES6 Modules (per usarla, aggiungi "type": "module" in package.json):
 import express from 'express';
 const router = express.Router();
@@ -19,7 +21,7 @@ import postsController from '../controllers/posts.js';*/
 // Quando arriva una richiesta GET a '/posts/', viene chiamata la funzione index del controller
 router.get("/", postsController.index);
 
-// Rotta create con un h1 o error 406
+// Rotta create con un h1 o error 406 (form)
 router.get('/create', postsController.create);
 
 // Rotta per mostrare un post specifico tramite slug
@@ -30,7 +32,10 @@ router.get('/:slug', postsController.show);
 // router.post("/", multer({dest: "public/images/posts_cover"}).single("image"), postsController.store);
 
 // Usa multer configurato con disco per upload singolo "image"
-router.post('/', upload.single('image'), postsController.store);
+// router.post('/', upload.single('image'), postsController.store);
+
+// Rotta POST store protetta con JWT, con caricamento immagine tramite multer
+router.post('/', authMiddleware, upload.single('image'), postsController.store);
 
 // destroy
 router.delete("/:slug", postsController.destroy);
