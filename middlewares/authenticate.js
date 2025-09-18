@@ -9,7 +9,10 @@ module.exports = function(req, res, next) {
 
     // Controlla che il token sia presente, altrimenti rispondi con 401 Unauthorized
     if (!bearerToken) {
-        return res.status(401).json({ message: "Token mancante" });
+        // return res.status(401).json({ message: "Token mancante" });
+        const err = new Error("Token mancante");
+        err.status = 401; // Unauthorized
+        return next(err);
     }
 
     // Estrai la parte del token eliminando la parola "Bearer " e lo spazio
@@ -27,11 +30,16 @@ module.exports = function(req, res, next) {
         // Continua al prossimo middleware o handler della rotta
         next();
     } catch (err) {
-        // Se il token non è valido o scaduto, setta errore con status 403 Forbidden
-        err.status = 403;
-        err.message = "Token non valido o scaduto";
-
-        // Passa l'errore al middleware di gestione errori globale (errorsFormatter.js)
+        if (err.name === "TokenExpiredError") {
+            err.status = 401; // Unauthorized per token scaduto
+            err.message = "Token scaduto";
+        } else if (err.name === "JsonWebTokenError") {
+            err.status = 403; // Forbidden per token invalido
+            err.message = "Token non valido";
+        } else {
+            err.status = 403;
+            err.message = "Errore di autenticazione";
+        }
         next(err);
     }
 };

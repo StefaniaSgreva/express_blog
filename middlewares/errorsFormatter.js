@@ -9,13 +9,13 @@ module.exports = function(err, req, res, next) {
     // Risposta JSON per richieste API
     json: () => {
       res.status(statusCode).json({
-        message: "Oops, mi sa che qualcosa è andato storto",
-        error: err.message
+        code: statusCode,
+        message: err.message || "Oops, something went wrong"
       });
     },
     // Risposta HTML (es. browser) come fallback
     default: () => {
-      res.status(statusCode).send("<h1>Oops, mi sa che qualcosa è andato storto</h1>");
+            res.status(statusCode).send("<h1>" + (err.message || "Oops, something went wrong") + "</h1>");
     }
   });
 };

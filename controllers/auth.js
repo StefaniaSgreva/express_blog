@@ -2,33 +2,40 @@
 // Importa funzione utilities che crea il token JWT firmato
 const generateJWT = require("../utilities/generateJWT");
 
-function login(req, res) {
-    // Legge username e password dal corpo della richiesta
-    const { username, password } = req.body;
+function login(req, res, next) {
+    try {
+        // Legge username e password dal corpo della richiesta
+        const { username, password } = req.body;
 
-    // Verifica che username e password siano forniti
-    if (!username || !password) {
-        return res.status(400).json({ message: "Username e password sono obbligatori" });
+        // Verifica che username e password siano forniti
+        if (!username || !password) {
+            // return res.status(400).json({ message: "Username e password sono obbligatori" });
+            throw Object.assign(new Error("Username e password sono obbligatori"), { status: 400 });
+        }
+
+        // Carica gli utenti da un file JSON simulando un database
+        const users = require("../db/users.json");
+
+        // Cerca un utente che corrisponda a username e password
+        // In un app reale la password sarà hashata e verificata con bcrypt o simili (qui solo rapido test)
+        const user = users.find((user) => user.username === username && user.password === password);
+
+        // Se non esiste un utente valido, invia errore 401
+        if (!user) {
+            // return res.status(401).json({ message: "Username e/o password errati" });
+            throw Object.assign(new Error("Username e/o password errati"), { status: 401 });
+        }
+
+        // Una volta trovato un utente con quell' username e password,
+        // Possiamo generare un token JWT e inviarlo al client
+        const token = generateJWT(user);
+
+        // Rispondi con un JSON che contiene il token JWT
+        res.json({ token });
+    } catch (error) {
+        next(error); // Passa l'errore al middleware di gestione errori
     }
 
-    // Carica gli utenti da un file JSON simulando un database
-    const users = require("../db/users.json");
-
-    // Cerca un utente che corrisponda a username e password
-    // In un app reale la password sarà hashata e verificata con bcrypt o simili (qui solo rapido test)
-    const user = users.find((user) => user.username === username && user.password === password);
-
-    // Se non esiste un utente valido, invia errore 401
-    if (!user) {
-        return res.status(401).json({ message: "Username e/o password errati" });
-    }
-
-    // Una volta trovato un utente con quell' username e password,
-    // Possiamo generare un token JWT e inviarlo al client
-    const token = generateJWT(user);
-
-    // Rispondi con un JSON che contiene il token JWT
-    res.json({ token });
 }
 
 module.exports = {
